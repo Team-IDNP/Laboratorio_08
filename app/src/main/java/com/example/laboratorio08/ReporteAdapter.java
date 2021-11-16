@@ -5,14 +5,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
-public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteViewHolder> {
+public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteViewHolder> implements Filterable {
 
     public static class ReporteViewHolder extends RecyclerView.ViewHolder {
         private final TextView departamento;
@@ -52,9 +56,10 @@ public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteV
 
     private List<Reporte> reportes;
 
+
     @NonNull
     @Override
-    public ReporteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) -{
+    public ReporteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout._, parent, false);
 
@@ -73,6 +78,45 @@ public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteV
     @Override
     public int getItemCount() {
         return reportes.size();
+    }
+
+    private Filter searchFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<Reporte> listaFiltrada = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                listaFiltrada.addAll(reportes);
+            } else {
+                String patron = constraint.toString().toLowerCase().trim();
+
+                for (Reporte reporte: reportes)  {
+                    if (reporte.getProvincia().toLowerCase().contains(patron)) {
+                        listaFiltrada.add(reporte);
+                    }
+                    if (reporte.getDistrito().toLowerCase().contains(patron)) {
+                        listaFiltrada.add(reporte);
+                    }
+                    if (reporte.getDepartamento().toLowerCase().contains(patron)) {
+                        listaFiltrada.add(reporte);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = listaFiltrada;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+
+        }
+    };
+
+    @Override
+    public Filter getFilter() {
+        return searchFilter;
     }
 
 }
