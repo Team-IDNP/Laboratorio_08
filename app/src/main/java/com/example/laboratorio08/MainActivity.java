@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         recicler = findViewById(R.id.recycler);
         recicler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        list = ReporteGenerator.generar(10);
+        list = ReporteGenerator.generar(50);
 
         ReporteAdapter rAdapter = new ReporteAdapter(list);
 
