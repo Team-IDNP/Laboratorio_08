@@ -110,9 +110,9 @@ public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteV
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            /*dataSet.clear();
+            dataSet.clear();
             dataSet.addAll((ArrayList<Reporte>) results.values);
-            notifyDataSetChanged();*/
+            notifyDataSetChanged();
         }
     };
 
