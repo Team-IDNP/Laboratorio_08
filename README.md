@@ -1,7 +1,7 @@
 # Laboratorio 08
 
 Este repositorio contiene el trabajo realizado durante la práctica de
-laboratorio 06 del curso de Introducción al Desarrollo de Nuevas Plataformas
+laboratorio 08 del curso de Introducción al Desarrollo de Nuevas Plataformas
 de la Universidad Nacional de San Agustin.
 
 ## Integrantes
