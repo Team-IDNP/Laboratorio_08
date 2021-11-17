@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,7 +21,7 @@ public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteV
         private final TextView departamento;
         private final TextView provincia;
         private final TextView distrito;
-        private final Image imagen;
+        private final ImageView imagen;
 
         public ReporteViewHolder(View view) {
             super(view);
@@ -43,7 +44,7 @@ public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteV
             return distrito;
         }
 
-        public Image getImagen() {
+        public ImageView getImagen() {
             return imagen;
         }
     }
@@ -59,7 +60,7 @@ public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteV
     @Override
     public ReporteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout._, parent, false);
+                .inflate(R.layout.activity_main, parent, false);
 
         return new ReporteViewHolder(view);
     }
