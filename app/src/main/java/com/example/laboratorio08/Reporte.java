@@ -1,14 +1,17 @@
 package com.example.laboratorio08;
 
+import androidx.annotation.DrawableRes;
+
 public class Reporte {
 
     private String departamento;
     private String provincia;
     private String distrito;
     private boolean estado;
-    private String imagen;
+    @DrawableRes
+    private int imagen;
 
-    public Reporte(String departamento, String provincia, String distrito, boolean estado, String imagen) {
+    public Reporte(String departamento, String provincia, String distrito, boolean estado, int imagen) {
         this.departamento = departamento;
         this.provincia = provincia;
         this.distrito = distrito;
@@ -48,11 +51,11 @@ public class Reporte {
         this.estado = estado;
     }
 
-    public String getImagen() {
+    public int getImagen() {
         return imagen;
     }
 
-    public void setImagen(String imagen) {
+    public void setImagen(int imagen) {
         this.imagen = imagen;
     }
 }

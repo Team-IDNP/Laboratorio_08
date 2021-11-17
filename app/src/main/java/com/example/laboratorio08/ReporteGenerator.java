@@ -141,4 +141,24 @@ public class ReporteGenerator {
             "LA CUESTA"
     };
 
+    private static String elementoAleatorio(@NonNull String[] arr) {
+        int tamano = arr.length;
+        int posicion = (int) (Math.random() * tamano);
+        return arr[posicion];
+    }
+
+    public static List<Reporte> generar(int cantidad) {
+        List<Reporte> lista = new ArrayList<>(cantidad);
+        for (int i = 0; i < cantidad; i++) {
+            lista.add(new Reporte(
+                    elementoAleatorio(departamentos),
+                    elementoAleatorio(provincias),
+                    elementoAleatorio(distritos),
+                    true,
+                    R.mipmap.img_basura
+            ));
+        }
+        return lista;
+    }
+
 }

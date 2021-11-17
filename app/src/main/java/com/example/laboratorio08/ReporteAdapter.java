@@ -26,10 +26,10 @@ public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteV
         public ReporteViewHolder(View view) {
             super(view);
 
-            departamento = view.findViewById(-1);
-            provincia = view.findViewById(-1);
-            distrito = view.findViewById(-1);
-            imagen = view.findViewById(-1);
+            departamento = view.findViewById(R.id.txtDepartamento);
+            provincia = view.findViewById(R.id.txtProvincia);
+            distrito = view.findViewById(R.id.txtDistrito);
+            imagen = view.findViewById(R.id.imgReporte);
         }
 
         public TextView getDepartamento() {
@@ -60,7 +60,7 @@ public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteV
     @Override
     public ReporteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_main, parent, false);
+                .inflate(R.layout.reporte_view, parent, false);
 
         return new ReporteViewHolder(view);
     }
@@ -68,10 +68,10 @@ public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteV
     @Override
     public void onBindViewHolder(@NonNull ReporteViewHolder holder, int position) {
         Reporte reporte = dataSet.get(position);
-        holder.getDepartamento().setText("" + reporte.getDepartamento());
-        holder.getDistrito().setText("" + reporte.getDistrito());
-        holder.getProvincia().setText("" + reporte.getProvincia());
-        // TODO: Falta agregar una imagen
+        holder.getDepartamento().setText(reporte.getDepartamento());
+        holder.getDistrito().setText(reporte.getDistrito());
+        holder.getProvincia().setText(reporte.getProvincia());
+        holder.getImagen().setBackgroundResource(reporte.getImagen());
     }
 
     @Override
