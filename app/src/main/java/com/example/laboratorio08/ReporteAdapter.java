@@ -1,7 +1,6 @@
 package com.example.laboratorio08;
 
 import android.media.Image;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteViewHolder> implements Filterable {
 
@@ -54,8 +52,8 @@ public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteV
         this.reportes = reportes;
     }
 
+    private List<Reporte> dataSet;
     private List<Reporte> reportes;
-
 
     @NonNull
     @Override
@@ -68,7 +66,7 @@ public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteV
 
     @Override
     public void onBindViewHolder(@NonNull ReporteViewHolder holder, int position) {
-        Reporte reporte = reportes.get(position);
+        Reporte reporte = dataSet.get(position);
         holder.getDepartamento().setText("" + reporte.getDepartamento());
         holder.getDistrito().setText("" + reporte.getDistrito());
         holder.getProvincia().setText("" + reporte.getProvincia());
@@ -77,7 +75,7 @@ public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteV
 
     @Override
     public int getItemCount() {
-        return reportes.size();
+        return dataSet.size();
     }
 
     private Filter searchFilter = new Filter() {
@@ -110,7 +108,9 @@ public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteV
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-
+            dataSet.clear();
+            dataSet.addAll((ArrayList<Reporte>) results.values);
+            notifyDataSetChanged();
         }
     };
 
