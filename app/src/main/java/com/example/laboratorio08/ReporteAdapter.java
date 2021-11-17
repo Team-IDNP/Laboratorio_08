@@ -26,10 +26,10 @@ public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteV
         public ReporteViewHolder(View view) {
             super(view);
 
-            departamento = view.findViewById(R.id.txtDepartamento);
-            provincia = view.findViewById(R.id.txtProvincia);
-            distrito = view.findViewById(R.id.txtDistrito);
-            imagen = view.findViewById(R.id.imgReporte);
+            departamento = view.findViewById(R.id.uno);
+            provincia = view.findViewById(R.id.dos);
+            distrito = view.findViewById(R.id.tres);
+            imagen = view.findViewById(R.id.cuatro);
         }
 
         public TextView getDepartamento() {
@@ -51,6 +51,7 @@ public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteV
 
     public ReporteAdapter(List<Reporte> reportes) {
         this.reportes = reportes;
+        this.dataSet = reportes;
     }
 
     private List<Reporte> dataSet;
@@ -60,7 +61,7 @@ public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteV
     @Override
     public ReporteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.reporte_view, parent, false);
+                .inflate(R.layout.item_list, parent, false);
 
         return new ReporteViewHolder(view);
     }
