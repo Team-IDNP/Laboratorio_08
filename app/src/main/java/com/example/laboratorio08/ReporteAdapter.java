@@ -26,10 +26,10 @@ public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteV
         public ReporteViewHolder(View view) {
             super(view);
 
-            departamento = view.findViewById(R.id.uno);
-            provincia = view.findViewById(R.id.dos);
-            distrito = view.findViewById(R.id.tres);
-            imagen = view.findViewById(R.id.cuatro);
+            departamento = view.findViewById(R.id.txtDepartamento);
+            provincia = view.findViewById(R.id.txtProvincia);
+            distrito = view.findViewById(R.id.txtDistrito);
+            imagen = view.findViewById(R.id.imgReporte);
         }
 
         public TextView getDepartamento() {
