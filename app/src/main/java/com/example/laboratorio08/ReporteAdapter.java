@@ -1,6 +1,8 @@
 package com.example.laboratorio08;
 
-import android.media.Image;
+import android.app.Activity;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,19 +19,22 @@ import java.util.List;
 
 public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteViewHolder> implements Filterable {
 
-    public static class ReporteViewHolder extends RecyclerView.ViewHolder {
+    public static class ReporteViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final TextView departamento;
         private final TextView provincia;
         private final TextView distrito;
         private final ImageView imagen;
+        private Activity activity;
 
-        public ReporteViewHolder(View view) {
+        public ReporteViewHolder(View view, Activity activity) {
             super(view);
 
             departamento = view.findViewById(R.id.txtDepartamento);
             provincia = view.findViewById(R.id.txtProvincia);
             distrito = view.findViewById(R.id.txtDistrito);
             imagen = view.findViewById(R.id.imgReporte);
+            this.activity = activity;
+            view.setOnClickListener(this);
         }
 
         public TextView getDepartamento() {
@@ -47,15 +52,27 @@ public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteV
         public ImageView getImagen() {
             return imagen;
         }
+
+        @Override
+        public void onClick(View v) {
+            Log.d("HOLDER", "onclick");
+            Intent intent = new Intent(activity, ReporteActivity.class);
+            intent.putExtra("Departamento", departamento.getText().toString());
+            intent.putExtra("Provincia", provincia.getText().toString());
+            intent.putExtra("Distrito", distrito.getText().toString());
+            activity.startActivity(intent);
+        }
     }
 
-    public ReporteAdapter(List<Reporte> reportes) {
+    public ReporteAdapter(List<Reporte> reportes, Activity activity) {
         this.reportes = reportes;
         this.dataSet = reportes;
+        this.activity = activity;
     }
 
     private List<Reporte> dataSet;
     private List<Reporte> reportes;
+    private Activity activity;
 
     @NonNull
     @Override
@@ -63,7 +80,7 @@ public class ReporteAdapter extends RecyclerView.Adapter<ReporteAdapter.ReporteV
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_list, parent, false);
 
-        return new ReporteViewHolder(view);
+        return new ReporteViewHolder(view, activity);
     }
 
     @Override

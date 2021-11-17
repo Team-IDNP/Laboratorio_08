@@ -24,8 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         list = ReporteGenerator.generar(50);
 
-        ReporteAdapter rAdapter = new ReporteAdapter(list);
-
+        ReporteAdapter rAdapter = new ReporteAdapter(list, this);
 
         recicler.setAdapter(rAdapter);
         Log.e("a", "recicler.");
